@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Header } from "./components/header";
+import { Cars } from "./pages/cars";
+import { ParkingLots } from "./pages/parkingLots";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [path, setPath] = useState("");
+
+  const title = path === "cars" ? "Carros" : "Estacionamentos";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <Header onClick={() => setIsOpen(true)} title={title} />
+      <div className={"side-menu" + (isOpen ? " open" : "")}>
+        <img
+          src={require("./icons/close.svg")}
+          onClick={() => setIsOpen(false)}
+          style={{ marginBottom: 16 }}
+        />
+        <div
+          onClick={() => {
+            setPath("parks");
+            setIsOpen(false);
+          }}
+          className="menu-item"
         >
-          Learn React
-        </a>
-      </header>
+          Estacionamentos
+        </div>
+        <div
+          onClick={() => {
+            setPath("cars");
+            setIsOpen(false);
+          }}
+          className="menu-item"
+        >
+          Carros
+        </div>
+      </div>
+      {path === "cars" && <Cars />}
+      {path === "parks" && <ParkingLots />}
     </div>
   );
 }

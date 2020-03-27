@@ -1,0 +1,23 @@
+.page-container {
+  padding: 16px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #aaa;
+}
+
+.list-item-title {
+  color: white;
+  font-size: 20px;
+  margin-right: 16px;
+}
+
+.list-item-description {
+  color: white;
+  font-size: 13px;
+}
